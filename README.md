@@ -18,7 +18,7 @@ For more blogs and examples, visit [Serverless Land](https://serverlessland.com/
 │   └── package.json            <-- NodeJS dependencies and scripts
 ├── atmConsumer                 <-- Source code for a lambda function
 │   └── handler.js              <-- Main Lambda handler
-├── template.yaml               <-- SAM template
+├── template.yml               <-- SAM template
 ```
 
 ## Requirements
@@ -44,7 +44,7 @@ Choose a stack name, select the desired AWS Region, and allow SAM to create role
 ## How it works
 
 * Use the AWS CLI or AWS Lambda Console to invoke the Producer function. This places the events in `events.js` onto the default event bus in EventBridge.
-* The EventBridge rule specified in `template.yaml` filters the events based upon the criteria in the `EventPattern` section.
+* The EventBridge rule specified in `template.yml` filters the events based upon the criteria in the `EventPattern` section.
 * When the rule validates an event, it is routed to the Consumer function. This logs out the event, which you can see in CloudWatch Logs.
 
 ==============================================
