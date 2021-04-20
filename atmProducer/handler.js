@@ -17,7 +17,7 @@ const AWS = require('aws-sdk')
 AWS.config.region = process.env.AWS_REGION || 'us-east-1'
 const eventbridge = new AWS.EventBridge()
 
-exports.lambdaHandler = async (event, context) => {
+exports.lambdaHandler = async (event, context, callback) => {
   // Do some work... 
   // And now create the event...
 
@@ -28,5 +28,15 @@ exports.lambdaHandler = async (event, context) => {
   const result = await eventbridge.putEvents(params).promise()
 
   console.log('--- Response ---')
-  console.log(result)  
+  console.log(result);
+
+  callback(null, {
+    statusCode: 201,
+    body: JSON.stringify({
+        message: 'Hello World'
+    }),
+    headers: {
+        'X-Custom-Header': 'ASDF'
+    }
+}); 
 }
